@@ -11,6 +11,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * @author Your name
  *
  */
+//3. Find the customer who is the most frequent renter.
 public class Requirement implements RequirementInterface {
   
   @Override
