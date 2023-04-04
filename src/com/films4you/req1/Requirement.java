@@ -2,7 +2,7 @@ package com.films4you.req1;
 
 import com.films4you.main.Database;
 import com.films4you.main.RequirementInterface;
-import com.films4you.main.TaskNotAttemptedException;
+//import com.films4you.main.TaskNotAttemptedException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

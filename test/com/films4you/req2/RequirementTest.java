@@ -15,5 +15,8 @@ public class RequirementTest {
 		Requirement r = new Requirement();
 		assertEquals("???", r.getValueAsString());
 	}
+	
+	//test it gives 10 values
+	//test they are in descending order
 
 }

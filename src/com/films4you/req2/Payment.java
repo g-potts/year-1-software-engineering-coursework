@@ -1,20 +1,22 @@
 package com.films4you.req2;
 
-public class Payment /*implements Comparable<Payment>*/ {
+import java.math.BigDecimal;
+
+public class Payment implements Comparable<Payment> {
 	
 	private int customerID;
-	private double totalAmount;
+	private BigDecimal totalAmount;
 	
-	public Payment(int customerID, double amount) {
+	public Payment(int customerID, BigDecimal amount) {
 		this.customerID = customerID;
 		totalAmount = amount;
 	}
 	
-	public void addPayment(double amount) {
-		totalAmount += amount;
+	public void addPayment(BigDecimal amount) {
+		totalAmount = totalAmount.add(amount);
 	}
 	
-	public double getTotalAmount() {
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 	
@@ -22,14 +24,15 @@ public class Payment /*implements Comparable<Payment>*/ {
 		return customerID;
 	}
 
-//	@Override
-//	public int compareTo(Payment p) {
+	@Override
+	public int compareTo(Payment p) {
 //		if (p.getTotalAmount() < this.totalAmount) {
 //			return -1;
 //		} else if (p.getTotalAmount() > this.totalAmount) {
 //			return 1;
 //		}
 //		return 0;
-//	}
+		return p.getTotalAmount().compareTo(this.totalAmount);
+	}
 	
 }

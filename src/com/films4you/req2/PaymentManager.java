@@ -1,46 +1,53 @@
 package com.films4you.req2;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import com.films4you.main.Database;
 
-public class PaymentManager implements Comparator<Payment>{
-	
-	//fields
-	
+public class PaymentManager /*implements Comparator<Payment> */{
+		
 	List<Payment> payments;
 	
-	//constructor
 	public PaymentManager() {
 		this.payments = new ArrayList<Payment>();
 		initialisePayments();
 	}
-	//methods
+
 	private void initialisePayments() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM payment");
 		try {
 			int i;
+			BigDecimal amount;
 			while (queryresult.next()) {
-				//if list does not contain item with this custID, make a new one
-				//add current amount to item with this custID
 				i = findCustomer(queryresult.getInt("customer_id"));
+				amount = queryresult.getBigDecimal("amount");
+				System.out.println(amount);
 				if (i > -1) {
-					payments.get(i).addPayment(queryresult.getDouble("amount"));
+					payments.get(i).addPayment(amount);
 				} else {
-					payments.add(new Payment(queryresult.getInt("customer_id"), queryresult.getDouble("amount")));
+					payments.add(new Payment(queryresult.getInt("customer_id"), amount));
 				}
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		payments.sort(null);
+	}
+	
+	public void sortArrayDescending() {
+		Collections.sort(payments, new Comparator<Payment>() {
+			public int compare(Payment o1, Payment o2) {
+				return o1.getTotalAmount().compareTo(o2.getTotalAmount());
+			}
+		});
+		Collections.reverse(payments);
 	}
 	
 	private int findCustomer(int ID) {
@@ -51,14 +58,23 @@ public class PaymentManager implements Comparator<Payment>{
 		}
 		return -1;
 	}
-	@Override
-	public int compare(Payment p1, Payment p2) {
-		if (p1.getTotalAmount() < p2.getTotalAmount()) {
-			return -1;
-		} else if (p1.getTotalAmount() > p2.getTotalAmount()) {
-			return 1;
-		}
-		return 0;
+	
+//	public String printArray(List<Payment> a) {
+//		for (Payment p : a) {
+//			System.out.println("ID: " + p.getID() + ", total payments: " + p.getTotalAmount());
+//		}
+//		return "";
+//	}
+	
+	public List<Payment> getTopTen() {
+		return payments.subList(0, 10);
+		//returns array with top ten ids and payments
 	}
+
+	//TODO commented code remove
+//	@Override
+//	public int compare(Payment o1, Payment o2) {
+//		return o1.getTotalAmount().compareTo(o2.getTotalAmount());
+//	}
 	
 }
