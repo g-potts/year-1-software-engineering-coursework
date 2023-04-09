@@ -12,6 +12,7 @@ public class RequirementTest {
   @Test
   public void testRequirementGetActual() {
     Requirement r = new Requirement();
+    r.getValueAsString();
     assertEquals("???", r.getValueAsString());
   }
  

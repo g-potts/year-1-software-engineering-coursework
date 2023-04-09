@@ -23,7 +23,7 @@ public class Payment implements Comparable<Payment> {
 	public int getID() {
 		return customerID;
 	}
-
+	
 	@Override
 	public int compareTo(Payment p) {
 //		if (p.getTotalAmount() < this.totalAmount) {

@@ -7,21 +7,30 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
  * Your class description here.
-
+ * 
  * @author Your name
  *
  */
-//3. Find the customer who is the most frequent renter.
+// 3. Find the customer who is the most frequent renter.
 public class Requirement implements RequirementInterface {
-  
-  @Override
-  public @Nullable String getValueAsString() {
-    throw new TaskNotAttemptedException();
-  }
 
-  @Override
-  public @NonNull String getHumanReadable() {
-    throw new TaskNotAttemptedException();
-  }
+	/*
+	 * get customer id
+	 * count number of rentals with each customer id
+	 * sort descending by count
+	 * return highest
+	 */
+	@Override
+	public @Nullable String getValueAsString() {
+		RentalCounter r = new RentalCounter();
+		r.sortByRentalsDescending();
+		Customer highest = r.getRenter(0);
+		return highest.getFullName();
+	}
+
+	@Override
+	public @NonNull String getHumanReadable() {
+		throw new TaskNotAttemptedException();
+	}
 
 }

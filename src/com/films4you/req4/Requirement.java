@@ -12,6 +12,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  *
  */
 //4. List top 10 cities by revenue.
+//city -> address [city id] -> customer -> payment
+//get payments like before, then get addresses, then sort into cities, sort by amount total
 public class Requirement implements RequirementInterface {
   
   @Override

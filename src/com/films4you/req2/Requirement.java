@@ -2,14 +2,12 @@ package com.films4you.req2;
 
 import com.films4you.main.Database;
 import com.films4you.main.RequirementInterface;
-import com.films4you.main.TaskNotAttemptedException;
+//import com.films4you.main.TaskNotAttemptedException;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -39,6 +37,7 @@ public class Requirement implements RequirementInterface {
 				while (id != queryresult.getInt("customer_id")) {
 					queryresult.next();
 				}
+				//do initially instead of here
 				topteninfo.add(queryresult.getString("first_name") + " " + queryresult.getString("last_name") + "," + p.getTotalAmount());
 			} catch (SQLException e) {
 				e.printStackTrace();
