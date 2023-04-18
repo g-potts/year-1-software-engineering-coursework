@@ -20,16 +20,21 @@ public class Requirement implements RequirementInterface {
 	 * sort descending by count
 	 * return highest
 	 */
-	@Override
-	public @Nullable String getValueAsString() {
+	//TODO [[done]] put get value as string code in private method
+	private Customer getHighestRenter() {
 		RentalCounter r = new RentalCounter();
 		r.sortByRentalsDescending();
-		Customer highest = r.getRenter(0);
-		return highest.getFullName();
+		return r.getRenter(0);
+	}
+	
+	@Override
+	public @Nullable String getValueAsString() {
+		return getHighestRenter().getFullName();
 	}
 
 	@Override
 	public @NonNull String getHumanReadable() {
+		//TODO r3 get human readable
 		throw new TaskNotAttemptedException();
 	}
 

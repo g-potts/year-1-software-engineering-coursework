@@ -8,32 +8,32 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.films4you.main.Database;
-import com.films4you.req2.Payment;
-
 public class RentalCounter {
-	
+
 	List<Customer> customers;
-	
+
 	public RentalCounter() {
 		this.customers = new ArrayList<Customer>();
 		initialiseArray();
 		countRentals();
 	}
-	
+
 	private void initialiseArray() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM customer");
 		String fullname = "";
 		try {
 			while (queryresult.next()) {
-				fullname = (queryresult.getString("first_name") + " " + queryresult.getString("last_name"));
-				customers.add(new Customer(fullname, queryresult.getInt("customer_id")));
+				fullname = (queryresult.getString("first_name") + " "
+						+ queryresult.getString("last_name"));
+				customers.add(new Customer(fullname,
+						queryresult.getInt("customer_id")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void countRentals() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM rental");
@@ -51,7 +51,7 @@ public class RentalCounter {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private int findCustomer(int ID) {
 		for (Customer c : customers) {
 			if (c.getID() == ID) {
@@ -60,7 +60,7 @@ public class RentalCounter {
 		}
 		return -1;
 	}
-	
+
 	public void sortByRentalsDescending() {
 		Collections.sort(customers, new Comparator<Customer>() {
 			public int compare(Customer o1, Customer o2) {
@@ -69,13 +69,9 @@ public class RentalCounter {
 		});
 		Collections.reverse(customers);
 	}
-	
+
 	public Customer getRenter(int index) {
 		return customers.get(index);
 	}
-	
-	//add all customers to array
-	//for each rental increment related customer
-	//sort
-	
+
 }

@@ -19,7 +19,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 // 1. Find the total number of customers
 public class Requirement implements RequirementInterface {
 	
-	/*
+	/* 
 	 * total number of customers:
 	 * select * from customer
 	 * count rows returned
@@ -43,13 +43,12 @@ public class Requirement implements RequirementInterface {
 	
 	@Override
 	public @Nullable String getValueAsString() {
-		// throw new TaskNotAttemptedException();
 		return Integer.toString(countCustomers());
-		
 	}
 
 	@Override
 	public @NonNull String getHumanReadable() {
+		//TODO r1 get human readable
 		return "Total number of customers in database: " + getValueAsString();
 	}
 

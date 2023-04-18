@@ -7,12 +7,22 @@ public class Payment implements Comparable<Payment> {
 	private int customerID;
 	private BigDecimal totalAmount;
 	
-	public Payment(int customerID, BigDecimal amount) {
+	public Payment(int customerID, BigDecimal initialamount) {
+		if (customerID < 0) {
+			throw new IllegalArgumentException("invalid customer id, must be positive integer");
+		}
+		if (initialamount.compareTo(BigDecimal.ZERO) == -1) {
+			throw new IllegalArgumentException("cannot begin with negative payments");
+		}
 		this.customerID = customerID;
-		totalAmount = amount;
+		totalAmount = initialamount;
 	}
 	
 	public void addPayment(BigDecimal amount) {
+		//TODO [[done]] check positive bigdecimal
+		if (amount.compareTo(BigDecimal.ZERO) == -1) {
+			throw new IllegalArgumentException("Can only add positive payment amounts");
+		}
 		totalAmount = totalAmount.add(amount);
 	}
 	
@@ -26,12 +36,7 @@ public class Payment implements Comparable<Payment> {
 	
 	@Override
 	public int compareTo(Payment p) {
-//		if (p.getTotalAmount() < this.totalAmount) {
-//			return -1;
-//		} else if (p.getTotalAmount() > this.totalAmount) {
-//			return 1;
-//		}
-//		return 0;
+
 		return p.getTotalAmount().compareTo(this.totalAmount);
 	}
 	

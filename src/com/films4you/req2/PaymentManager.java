@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.films4you.main.Database;
 
-public class PaymentManager /*implements Comparator<Payment> */{
+public class PaymentManager {
 		
 	List<Payment> payments;
 	
@@ -28,7 +28,7 @@ public class PaymentManager /*implements Comparator<Payment> */{
 			while (queryresult.next()) {
 				i = findCustomer(queryresult.getInt("customer_id"));
 				amount = queryresult.getBigDecimal("amount");
-				System.out.println(amount);
+				//System.out.println(amount);
 				if (i > -1) {
 					payments.get(i).addPayment(amount);
 				} else {
@@ -59,22 +59,11 @@ public class PaymentManager /*implements Comparator<Payment> */{
 		return -1;
 	}
 	
-//	public String printArray(List<Payment> a) {
-//		for (Payment p : a) {
-//			System.out.println("ID: " + p.getID() + ", total payments: " + p.getTotalAmount());
-//		}
-//		return "";
-//	}
-	
 	public List<Payment> getTopTen() {
 		return payments.subList(0, 10);
 		//returns array with top ten ids and payments
 	}
 
-	//TODO commented code remove
-//	@Override
-//	public int compare(Payment o1, Payment o2) {
-//		return o1.getTotalAmount().compareTo(o2.getTotalAmount());
-//	}
+
 	
 }

@@ -27,9 +27,7 @@ public class Requirement implements RequirementInterface {
 		List<Payment> toptenlist = pm.getTopTen();
 		List<String> topteninfo = new ArrayList<String>();
 		
-		Database db = new Database();
-		//ResultSet queryresult = db.query("SELECT * FROM customer");
-		
+		Database db = new Database();		
 		for (Payment p : toptenlist) {
 			int id = p.getID();
 			try {
@@ -37,7 +35,7 @@ public class Requirement implements RequirementInterface {
 				while (id != queryresult.getInt("customer_id")) {
 					queryresult.next();
 				}
-				//do initially instead of here
+				//TODO replace finding customer id by doing initially?
 				topteninfo.add(queryresult.getString("first_name") + " " + queryresult.getString("last_name") + "," + p.getTotalAmount());
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -45,7 +43,6 @@ public class Requirement implements RequirementInterface {
 			
 		}
 		return topteninfo;
-		// getTopTen() use ids found to get names
 	}
 	
 	@Override
@@ -59,7 +56,6 @@ public class Requirement implements RequirementInterface {
 
 	@Override
 	public @NonNull String getHumanReadable() {
-		//throw new TaskNotAttemptedException();
 		String output = "";
 		int i = 1;
 		for (String s : findTopTenInfo()) {
