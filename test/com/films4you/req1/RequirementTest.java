@@ -16,5 +16,11 @@ public class RequirementTest {
 		assertEquals("599", r.getValueAsString());
 	}
 	//TODO [[unnecessary?]] test compared to sql statement
-	//TODO test r1 human readable
+	
+	//TODO [[done]] test r1 human readable
+	@Test
+	public void testRequirementGetHumanReadable() {
+		Requirement r = new Requirement();
+		assertEquals("Total number of customers in database: 599", r.getHumanReadable());
+	}
 }

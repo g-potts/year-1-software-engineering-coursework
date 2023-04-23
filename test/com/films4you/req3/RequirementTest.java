@@ -13,7 +13,6 @@ public class RequirementTest {
 	public void testRequirementGetActual() {
 		//TODO [[done]] test get actual
 		Requirement r = new Requirement();
-		r.getValueAsString();
 		assertEquals("ELEANOR HUNT", r.getValueAsString());
 	}
 	// TODO [[r??]]test check against sql statement
@@ -29,5 +28,10 @@ public class RequirementTest {
 	public void testCustomerInvalidID() {
 		Customer c = new Customer("Name Surname", -123);
 	}
-	//TODO test get human readable
+	//TODO [[done]] test get human readable
+	@Test
+	public void testRequirementGetHumanReadable() {
+		Requirement r = new Requirement();
+		assertEquals("The most frequent renter is Eleanor Hunt", r.getValueAsString());
+	}
 }

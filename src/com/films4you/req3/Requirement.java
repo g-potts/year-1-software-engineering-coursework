@@ -1,7 +1,7 @@
 package com.films4you.req3;
 
 import com.films4you.main.RequirementInterface;
-import com.films4you.main.TaskNotAttemptedException;
+//import com.films4you.main.TaskNotAttemptedException;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -34,8 +34,11 @@ public class Requirement implements RequirementInterface {
 
 	@Override
 	public @NonNull String getHumanReadable() {
-		//TODO r3 get human readable
-		throw new TaskNotAttemptedException();
+		//TODO [[done]] r3 get human readable
+		String firstname = this.getValueAsString().split(" ")[0];
+		String lastname = this.getValueAsString().split(" ")[1];
+		String nameLowercase = firstname.charAt(0) + firstname.substring(1).toLowerCase() + " " + lastname.charAt(0) + lastname.substring(1).toLowerCase();
+		return "The most frequent renter is " + nameLowercase;
 	}
 
 }

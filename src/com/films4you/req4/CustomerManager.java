@@ -8,22 +8,12 @@ import java.util.Map;
 
 import com.films4you.main.Database;
 
-
-//set up all customers with address ids, then add payments
 public class CustomerManager {
 	
-	private static CustomerManager instance = null;
 	private Map<Integer, Customer> customers;
 	
-	private CustomerManager() {
+	public CustomerManager() {
 		customers = new HashMap<Integer, Customer>();
-	}
-	
-	public static CustomerManager getInstance() {
-		if (instance == null) {
-			instance = new CustomerManager();
-		}
-		return instance;
 	}
 	
 	public void initialiseCustomers() {

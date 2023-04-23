@@ -15,21 +15,13 @@ import com.films4you.req2.Payment;
 
 public class CityManager {
 	
-	private static CityManager instance = null;
 	private Map<Integer, BigDecimal> addressmap = null;
 	private Map<Integer, BigDecimal> citymap = null;
 	private List<City> citylist = null;
 	
-	private CityManager() {
+	public CityManager() {
 		citymap = new HashMap<Integer, BigDecimal>();
 		citylist = new ArrayList<City>();
-	}
-	
-	public static CityManager getInstance() {
-		if (instance == null) {
-			instance = new CityManager();
-		}
-		return instance;
 	}
 	
 	public void setAddressMap(Map<Integer, BigDecimal> a) {
@@ -62,11 +54,18 @@ public class CityManager {
 		//currently have map relating address id to total revenue
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM address");
-		
+		ResultSet cityresults = db.query("SELECT * FROM city");
 		try {
 			while (queryresult.next()) {
-				System.out.println(addressmap.containsKey(queryresult.getInt("address_id")));
-				citylist.add(new City(queryresult.getInt("city_id"), addressmap.get(queryresult.getInt("address_id"))));
+				if (addressmap.containsKey(queryresult.getInt("address_id"))) {
+					City c = new City(queryresult.getInt("city_id"), addressmap.get(queryresult.getInt("address_id")));
+					cityresults = db.query("SELECT * FROM city");
+					while (cityresults.getRow() != queryresult.getInt("city_id")) {
+						cityresults.next();
+					}
+					c.setName(cityresults.getString("city"));
+					citylist.add(c);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,5 +97,6 @@ public class CityManager {
 				return c1.compareTo(c2);
 			}
 		});
+		Collections.reverse(citylist);
 	}
 }

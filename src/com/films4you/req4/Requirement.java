@@ -28,12 +28,12 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 public class Requirement implements RequirementInterface {
 	
 	private List<City> getHighestRentingCities() {
-		CustomerManager custm = CustomerManager.getInstance();
+		CustomerManager custm = new CustomerManager();
 		
 		custm.initialiseCustomers();
 		custm.addPayments();
 		
-		CityManager citym = CityManager.getInstance();
+		CityManager citym = new CityManager();
 		
 		citym.setAddressMap(custm.createAddressMap());
 		citym.initialiseCitiesNew();
@@ -43,19 +43,6 @@ public class Requirement implements RequirementInterface {
 	
 	@Override
 	public @Nullable String getValueAsString() {
-//		throw new TaskNotAttemptedException();
-//		int cityid = getHighestRentingCity();
-//		Database db = new Database();
-//		ResultSet queryresult = db.query("SELECT * FROM city");
-//		try {
-//			while (queryresult.getInt("city_id") != cityid) {
-//				queryresult.next();
-//			}
-//			return queryresult.getString("city");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return "city not found";
 		String output = ""; 
 		List<City> topten = getHighestRentingCities();
 		for (City c : topten) {
@@ -66,7 +53,14 @@ public class Requirement implements RequirementInterface {
 
 	@Override
 	public @NonNull String getHumanReadable() {
-		throw new TaskNotAttemptedException();
+		String output = "";
+		String[] infoArray = this.getValueAsString().split("\n");
+		int i = 1;
+		for (String s : infoArray) {
+			output += ("The number " + i + " customer is " + s.split(",")[0] + " who generated £" + s.split(",")[1] + " of income.\n");
+			i++;
+		}
+		return output;
 	}
 
 }

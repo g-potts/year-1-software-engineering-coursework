@@ -46,5 +46,20 @@ public class RequirementTest {
 		Payment p = new Payment(123, new BigDecimal("9.99"));
 		p.addPayment(new BigDecimal("-99.99"));
 	}
-	//TODO test get human readable
+
+	//TODO [[done]] test get human readable
+	@Test
+	public void testRequirementGetHumanReadable() {
+		Requirement r = new Requirement();
+		assertEquals("The number 1 customer is KARL SEAL who generated £221.55 of income.\n"
+				+ "The number 2 customer is ELEANOR HUNT who generated £216.54 of income.\n"
+				+ "The number 3 customer is CLARA SHAW who generated £195.58 of income.\n"
+				+ "The number 4 customer is MARION SNYDER who generated £194.61 of income.\n"
+				+ "The number 5 customer is RHONDA KENNEDY who generated £194.61 of income.\n"
+				+ "The number 6 customer is TOMMY COLLAZO who generated £186.62 of income.\n"
+				+ "The number 7 customer is WESLEY BULL who generated £177.60 of income.\n"
+				+ "The number 8 customer is TIM CARY who generated £175.61 of income.\n"
+				+ "The number 9 customer is MARCIA DEAN who generated £175.58 of income.\n"
+				+ "The number 10 customer is ANA BRADLEY who generated £174.66 of income.\n", r.getHumanReadable());
+	}
 }

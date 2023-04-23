@@ -48,7 +48,7 @@ public class Requirement implements RequirementInterface {
 
 	@Override
 	public @NonNull String getHumanReadable() {
-		//TODO r1 get human readable
+		//TODO [[done]] r1 get human readable
 		return "Total number of customers in database: " + getValueAsString();
 	}
 
