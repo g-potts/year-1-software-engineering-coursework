@@ -32,6 +32,6 @@ public class RequirementTest {
 	@Test
 	public void testRequirementGetHumanReadable() {
 		Requirement r = new Requirement();
-		assertEquals("The most frequent renter is Eleanor Hunt", r.getValueAsString());
+		assertEquals("The most frequent renter is Eleanor Hunt", r.getHumanReadable());
 	}
 }
