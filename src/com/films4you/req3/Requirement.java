@@ -23,6 +23,8 @@ public class Requirement implements RequirementInterface {
 	//TODO [[done]] put get value as string code in private method
 	private Customer getHighestRenter() {
 		RentalCounter r = new RentalCounter();
+		r.initialiseArray();
+		r.countRentals();
 		r.sortByRentalsDescending();
 		return r.getRenter(0);
 	}

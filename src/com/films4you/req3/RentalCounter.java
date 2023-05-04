@@ -14,11 +14,9 @@ public class RentalCounter {
 
 	public RentalCounter() {
 		this.customers = new ArrayList<Customer>();
-		initialiseArray();
-		countRentals();
 	}
 
-	private void initialiseArray() {
+	public void initialiseArray() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM customer");
 		String fullname = "";
@@ -34,7 +32,7 @@ public class RentalCounter {
 		}
 	}
 
-	private void countRentals() {
+	public void countRentals() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM rental");
 		try {
