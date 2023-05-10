@@ -28,17 +28,16 @@ public class PaymentManager {
 			while (queryresult.next()) {
 				i = findCustomer(queryresult.getInt("customer_id"));
 				amount = queryresult.getBigDecimal("amount");
-				//System.out.println(amount);
 				if (i > -1) {
 					payments.get(i).addPayment(amount);
 				} else {
 					payments.add(new Payment(queryresult.getInt("customer_id"), amount));
 				}
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 	
 	public void sortArrayDescending() {
@@ -61,9 +60,6 @@ public class PaymentManager {
 	
 	public List<Payment> getTopTen() {
 		return payments.subList(0, 10);
-		//returns array with top ten ids and payments
 	}
-
-
 	
 }

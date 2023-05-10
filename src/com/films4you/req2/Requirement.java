@@ -35,13 +35,12 @@ public class Requirement implements RequirementInterface {
 				while (id != queryresult.getInt("customer_id")) {
 					queryresult.next();
 				}
-				//TODO replace finding customer id by doing initially?
 				topteninfo.add(queryresult.getString("first_name") + " " + queryresult.getString("last_name") + "," + p.getTotalAmount());
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
+		db.close();
 		return topteninfo;
 	}
 	
@@ -59,7 +58,8 @@ public class Requirement implements RequirementInterface {
 		String output = "";
 		int i = 1;
 		for (String s : findTopTenInfo()) {
-			output += ("The number " + i + " customer is " + s.split(",")[0] + " who generated £" + s.split(",")[1] + " of income.\n");
+			output += ("The number " + i + " customer is " + s.split(",")[0] +
+					" who generated £" + s.split(",")[1] + " of income.\n");
 			i++;
 		}
 		return output;

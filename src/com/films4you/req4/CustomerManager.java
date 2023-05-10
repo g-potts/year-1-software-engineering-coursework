@@ -31,6 +31,7 @@ public class CustomerManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 	
 	public void addPayments() {
@@ -45,6 +46,7 @@ public class CustomerManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 	
 	public Map<Integer, BigDecimal> createAddressMap() {

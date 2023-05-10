@@ -10,7 +10,7 @@ import java.util.List;
 import com.films4you.main.Database;
 public class RentalCounter {
 
-	List<Customer> customers;
+	private List<Customer> customers;
 
 	public RentalCounter() {
 		this.customers = new ArrayList<Customer>();
@@ -30,6 +30,7 @@ public class RentalCounter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 
 	public void countRentals() {
@@ -48,6 +49,7 @@ public class RentalCounter {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 
 	private int findCustomer(int ID) {

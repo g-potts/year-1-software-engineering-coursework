@@ -9,9 +9,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.films4you.main.Database;
-import com.films4you.req2.Payment;
 
 public class CityManager {
 	
@@ -45,13 +43,13 @@ public class CityManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 	
 	public void initialiseCitiesNew() {
 		if (addressmap == null) {
 			throw new NullPointerException("address map not initialised");
 		}
-		//currently have map relating address id to total revenue
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM address");
 		ResultSet cityresults = db.query("SELECT * FROM city");
@@ -70,6 +68,7 @@ public class CityManager {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		db.close();
 	}
 	
 	public int findHighestCity() {

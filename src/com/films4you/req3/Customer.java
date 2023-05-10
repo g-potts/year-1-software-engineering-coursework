@@ -7,11 +7,9 @@ public class Customer implements Comparable<Customer>{
 	private int rentals;
 	
 	public Customer(String fullname, int customerID) {
-		//TODO [[done]] check fullname is two names with space, not null, not empty
 		if (!fullname.matches("[A-Za-z]+ [A-Za-z]+")) {
 			throw new IllegalArgumentException("invalid format for full name");
 		}
-		//TODO [[done]] check customer id >= 0
 		if (customerID < 0) {
 			throw new IllegalArgumentException("customer ID must be greater than or equal to 0");
 		}
