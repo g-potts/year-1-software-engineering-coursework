@@ -15,7 +15,6 @@ public class RequirementTest {
 		Requirement r = new Requirement();
 		assertEquals("599", r.getValueAsString());
 	}
-	//TODO [[unnecessary?]] test compared to sql statement
 	
 	//TODO [[done]] test r1 human readable
 	@Test
