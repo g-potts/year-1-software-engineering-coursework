@@ -13,22 +13,25 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Your class description here.
+ * Requirement 2: list the top 10 customers by revenue.
  * 
- * @author Your name
+ * @author Grace Potts
  *
  */
-// 2. List top 10 customers by revenue.
 public class Requirement implements RequirementInterface {
 	
+	/**
+	 * creates arraylist of strings containing name and revenue of top 10 customers.
+	 * @return ArrayList containing top ten customers by revenue.
+	 */
 	private List<String> findTopTenInfo(){
 		PaymentManager pm = new PaymentManager();
 		pm.sortArrayDescending();
-		List<Payment> toptenlist = pm.getTopTen();
+		List<Customer> toptenlist = pm.getTopTen();
 		List<String> topteninfo = new ArrayList<String>();
 		
 		Database db = new Database();		
-		for (Payment p : toptenlist) {
+		for (Customer p : toptenlist) {
 			int id = p.getID();
 			try {
 				ResultSet queryresult = db.query("SELECT * FROM customer");

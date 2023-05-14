@@ -6,14 +6,17 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Your class description here.
+ * Requirement 4: List top 10 cities by revenue
  * 
- * @author Your name
+ * @author Grace Potts
  *
  */
-// 4. List top 10 cities by revenue.
 public class Requirement implements RequirementInterface {
 	
+	/**
+	 * uses CustomerManager and CityManager classes to find cities generating the most revenue
+	 * @return top 10 cities generating the most revenue
+	 */
 	private List<City> getHighestRentingCities() {
 		CustomerManager custm = new CustomerManager();
 		
@@ -23,7 +26,7 @@ public class Requirement implements RequirementInterface {
 		CityManager citym = new CityManager();
 		
 		citym.setAddressMap(custm.createAddressMap());
-		citym.initialiseCitiesNew();
+		citym.initialiseCities();
 		
 		return citym.findHighestCities();
 	}
@@ -44,8 +47,8 @@ public class Requirement implements RequirementInterface {
 		String[] infoArray = this.getValueAsString().split("\n");
 		int i = 1;
 		for (String s : infoArray) {
-			output += ("The number " + i + " customer is " + s.split(",")[0] + 
-					" who generated £" + s.split(",")[1] + " of income.\n");
+			output += ("The number " + i + " city is " + s.split(",")[0] + 
+					" which generated £" + s.split(",")[1] + " of income.\n");
 			i++;
 		}
 		return output;

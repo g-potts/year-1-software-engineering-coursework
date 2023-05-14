@@ -1,5 +1,9 @@
 package com.films4you.req3;
-
+/**
+ * Class that represents one customer within the database, and stores the total number of rentals they make.
+ * @author gpott
+ *
+ */
 public class Customer implements Comparable<Customer>{
 	
 	private String fullname;
@@ -17,7 +21,9 @@ public class Customer implements Comparable<Customer>{
 		this.customerID = customerID;
 		this.rentals = 0;
 	}
-	
+	/**
+	 * increments number of rentals made by one.
+	 */
 	public void addRental() {
 		rentals++;
 	}

@@ -6,14 +6,17 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Your class description here.
+ *Requirement 3: Find the customer who is the most frequent renter
  * 
- * @author Your name
+ * @author Grace Potts
  *
  */
-// 3. Find the customer who is the most frequent renter.
 public class Requirement implements RequirementInterface {
-
+	
+	/**
+	 * uses RentalCounter to find most frequent renter.
+	 * @return customer object representing the most frequent renter
+	 */
 	private Customer getHighestRenter() {
 		RentalCounter r = new RentalCounter();
 		r.initialiseArray();

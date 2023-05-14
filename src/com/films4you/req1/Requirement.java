@@ -11,14 +11,19 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
- * Your class description here.
+ * Requirement 1: find the total number of customers in the database.
  * 
- * @author gpotts
+ * @author Grace Potts
  *
  */
 // 1. Find the total number of customers
 public class Requirement implements RequirementInterface {
 	
+	/**
+	 * Counts number of entries in customer table of database.
+	 * 
+	 * @return number of customers found in database
+	 */
 	private int countCustomers() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM customer");

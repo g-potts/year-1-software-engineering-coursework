@@ -6,8 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import com.films4you.main.Database;
+/**
+ * Class that processes a list of customers and can count their number of rentals.
+ * @author gpott
+ *
+ */
 public class RentalCounter {
 
 	private List<Customer> customers;
@@ -16,6 +20,9 @@ public class RentalCounter {
 		this.customers = new ArrayList<Customer>();
 	}
 
+	/**
+	 * initialises the ArrayList of customers using database 
+	 */
 	public void initialiseArray() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM customer");
@@ -33,6 +40,9 @@ public class RentalCounter {
 		db.close();
 	}
 
+	/**
+	 * counts the number of rentals associated with each customer. depends on customer array being initialised.
+	 */
 	public void countRentals() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM rental");
@@ -51,7 +61,12 @@ public class RentalCounter {
 		}
 		db.close();
 	}
-
+	
+	/**
+	 * searches this object's list of customers for the customer with given ID
+	 * @param ID ID of customer to be found
+	 * @return index of customer within this object's list, or -1 if not found.
+	 */
 	private int findCustomer(int ID) {
 		for (Customer c : customers) {
 			if (c.getID() == ID) {

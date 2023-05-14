@@ -2,6 +2,11 @@ package com.films4you.req4;
 
 import java.math.BigDecimal;
 
+/**
+ * Class that represents one customer within the database.
+ * @author gpott
+ *
+ */
 public class Customer {
 	
 	private int customerID;
@@ -16,6 +21,10 @@ public class Customer {
 		this.totalpayments = BigDecimal.ZERO;
 	}
 	
+	/**
+	 * Increases total payments recorded by value given.
+	 * @param amount value of payment to be added, must be positive
+	 */
 	public void addPayment(BigDecimal amount) {
 		if (amount.compareTo(BigDecimal.ZERO) == -1) {
 			throw new IllegalArgumentException("amount must be positive");

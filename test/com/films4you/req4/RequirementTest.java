@@ -23,15 +23,15 @@ public class RequirementTest {
 	@Test
 	public void testRequirementGetHumanReadable() {
 		Requirement r = new Requirement();
-		assertEquals("The number 1 customer is Cape Coral who generated £221.55 of income.\n"
-				+ "The number 2 customer is Saint-Denis who generated £216.54 of income.\n"
-				+ "The number 3 customer is Molodetno who generated £195.58 of income.\n"
-				+ "The number 4 customer is Santa Brbara dOeste who generated £194.61 of income.\n"
-				+ "The number 5 customer is Apeldoorn who generated £194.61 of income.\n"
-				+ "The number 6 customer is Qomsheh who generated £186.62 of income.\n"
-				+ "The number 7 customer is Ourense (Orense) who generated £177.60 of income.\n"
-				+ "The number 8 customer is Bijapur who generated £175.61 of income.\n"
-				+ "The number 9 customer is Tanza who generated £175.58 of income.\n"
-				+ "The number 10 customer is Memphis who generated £174.66 of income.\n", r.getHumanReadable());
+		assertEquals("The number 1 city is Cape Coral which generated £221.55 of income.\n"
+				+ "The number 2 city is Saint-Denis which generated £216.54 of income.\n"
+				+ "The number 3 city is Molodetno which generated £195.58 of income.\n"
+				+ "The number 4 city is Santa Brbara dOeste which generated £194.61 of income.\n"
+				+ "The number 5 city is Apeldoorn which generated £194.61 of income.\n"
+				+ "The number 6 city is Qomsheh which generated £186.62 of income.\n"
+				+ "The number 7 city is Ourense (Orense) which generated £177.60 of income.\n"
+				+ "The number 8 city is Bijapur which generated £175.61 of income.\n"
+				+ "The number 9 city is Tanza which generated £175.58 of income.\n"
+				+ "The number 10 city is Memphis which generated £174.66 of income.\n", r.getHumanReadable());
 	}
 }

@@ -8,6 +8,11 @@ import java.util.Map;
 
 import com.films4you.main.Database;
 
+/**
+ * class that processes customers within database
+ * @author gpotts
+ *
+ */
 public class CustomerManager {
 	
 	private Map<Integer, Customer> customers;
@@ -16,6 +21,9 @@ public class CustomerManager {
 		customers = new HashMap<Integer, Customer>();
 	}
 	
+	/**
+	 * adds all customers in database to hashmap
+	 */
 	public void initialiseCustomers() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM customer");
@@ -34,6 +42,9 @@ public class CustomerManager {
 		db.close();
 	}
 	
+	/**
+	 * adds total payments to each customer in payment
+	 */
 	public void addPayments() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM payment");
@@ -49,6 +60,10 @@ public class CustomerManager {
 		db.close();
 	}
 	
+	/**
+	 * generates new hashmap linking customer address to their payment
+	 * @return hashmap with key being address id and value being total payments at that address 
+	 */
 	public Map<Integer, BigDecimal> createAddressMap() {
 		Map<Integer, BigDecimal> addressmap = new HashMap<Integer, BigDecimal>();
 		for (int i : customers.keySet()) {

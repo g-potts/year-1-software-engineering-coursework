@@ -2,6 +2,11 @@ package com.films4you.req4;
 
 import java.math.BigDecimal;
 
+/**
+ * Object representing a city in the database, with a field containing its total revenue produced
+ * @author gpotts
+ *
+ */
 public class City implements Comparable<City>{
 
 	private int cityID;

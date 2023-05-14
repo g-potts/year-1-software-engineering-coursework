@@ -6,47 +6,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.films4you.main.Database;
 
+/**
+ * Class that processes addresses and their relevant revenue
+ * @author gpott
+ *
+ */
 public class CityManager {
 	
 	private Map<Integer, BigDecimal> addressmap = null;
-	private Map<Integer, BigDecimal> citymap = null;
 	private List<City> citylist = null;
 	
 	public CityManager() {
-		citymap = new HashMap<Integer, BigDecimal>();
 		citylist = new ArrayList<City>();
 	}
 	
-	public void setAddressMap(Map<Integer, BigDecimal> a) {
-		addressmap = a;
-	}
-	
+	/**
+	 * sorts map between addresses and revenue into a new map between cities and their revenue
+	 */
 	public void initialiseCities() {
-		if (addressmap == null) {
-			throw new NullPointerException("address map not initialised");
-		}
-		Database db = new Database();
-		ResultSet queryresult = db.query("SELECT * FROM address");
-		int addressid;
-		try {
-			while (queryresult.next()) {
-				addressid = queryresult.getInt("address_id");
-				if (addressmap.get(addressid) != null) {
-					citymap.put(queryresult.getInt("city_id"), addressmap.get(addressid));
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		db.close();
-	}
-	
-	public void initialiseCitiesNew() {
 		if (addressmap == null) {
 			throw new NullPointerException("address map not initialised");
 		}
@@ -71,14 +52,8 @@ public class CityManager {
 		db.close();
 	}
 	
-	public int findHighestCity() {
-		int id = 1;
-		for (int i : citymap.keySet()) {
-			if (citymap.get(i).compareTo(citymap.get(id)) == 1) {
-				id = i;
-			}
-		}
-		return id;
+	public void setAddressMap(Map<Integer, BigDecimal> a) {
+		addressmap = a;
 	}
 	
 	public List<City> findHighestCities() {

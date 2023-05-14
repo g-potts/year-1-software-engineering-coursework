@@ -9,16 +9,23 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.films4you.main.Database;
-
+/**
+ * Class for processing customers and their respective payments from the database.
+ * @author gpott
+ *
+ */
 public class PaymentManager {
 		
-	List<Payment> payments;
+	private List<Customer> customerPayments;
 	
 	public PaymentManager() {
-		this.payments = new ArrayList<Payment>();
+		this.customerPayments = new ArrayList<Customer>();
 		initialisePayments();
 	}
-
+	
+	/**
+	 * Sorts all payments found in database into a list of customers.
+	 */
 	private void initialisePayments() {
 		Database db = new Database();
 		ResultSet queryresult = db.query("SELECT * FROM payment");
@@ -29,9 +36,9 @@ public class PaymentManager {
 				i = findCustomer(queryresult.getInt("customer_id"));
 				amount = queryresult.getBigDecimal("amount");
 				if (i > -1) {
-					payments.get(i).addPayment(amount);
+					customerPayments.get(i).addPayment(amount);
 				} else {
-					payments.add(new Payment(queryresult.getInt("customer_id"), amount));
+					customerPayments.add(new Customer(queryresult.getInt("customer_id"), amount));
 				}
 			}
 		} catch (SQLException e) {
@@ -39,27 +46,30 @@ public class PaymentManager {
 		}
 		db.close();
 	}
-	
-	public void sortArrayDescending() {
-		Collections.sort(payments, new Comparator<Payment>() {
-			public int compare(Payment o1, Payment o2) {
-				return o1.getTotalAmount().compareTo(o2.getTotalAmount());
-			}
-		});
-		Collections.reverse(payments);
-	}
-	
+	/**
+	 * searches this object's list of customers for the customer with given ID
+	 * @param ID ID of customer to be found
+	 * @return index of customer within this object's list, or -1 if not found.
+	 */
 	private int findCustomer(int ID) {
-		for (Payment p : payments) {
+		for (Customer p : customerPayments) {
 			if (p.getID() == ID) {
-				return payments.indexOf(p);
+				return customerPayments.indexOf(p);
 			}
 		}
 		return -1;
 	}
+	public void sortArrayDescending() {
+		Collections.sort(customerPayments, new Comparator<Customer>() {
+			public int compare(Customer o1, Customer o2) {
+				return o1.getTotalAmount().compareTo(o2.getTotalAmount());
+			}
+		});
+		Collections.reverse(customerPayments);
+	}
 	
-	public List<Payment> getTopTen() {
-		return payments.subList(0, 10);
+	public List<Customer> getTopTen() {
+		return customerPayments.subList(0, 10);
 	}
 	
 }
